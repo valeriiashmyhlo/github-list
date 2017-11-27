@@ -14,6 +14,8 @@ import Repo from './components/Repo';
 import registerServiceWorker from './registerServiceWorker';
 import { syncHistoryWithStore } from 'react-router-redux';
 
+// TODO: remove unused const
+
 const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(

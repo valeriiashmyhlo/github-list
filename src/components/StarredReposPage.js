@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchStarredRepos } from '../features/repos/actions';
+import { RepoList } from './RepoList';
 
 class StarredReposPage extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchStarredRepos();
   }
+
   render() {
-    return <StarredReposPage repos={this.props.repos} />;
+    return <RepoList repos={this.props.repos} />;
   }
 }
 

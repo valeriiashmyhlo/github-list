@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Container } from 'reactstrap';
-import RepoList from './components/RepoList';
 
 class App extends Component {
   render() {

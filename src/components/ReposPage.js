@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-// import { Media } from 'reactstrap';
 import { fetchRepos } from '../features/repos/actions';
 import { RepoList } from './RepoList';
 
 class ReposPage extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchRepos();
   }
 

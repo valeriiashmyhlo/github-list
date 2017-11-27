@@ -1,6 +1,5 @@
 import * as api from '../../githubApi';
 
-export const CONTRIBUTORS_FETCH = 'CONTRIBUTORS_FETCH';
 export const CONTRIBUTORS_FETCH_SUCCESS = 'CONTRIBUTORS_FETCH_SUCCESS';
 
 export const fetchContributors = ({ owner, repo }) => dispatch =>
