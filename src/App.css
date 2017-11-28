@@ -23,10 +23,21 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
+.sort a {
+  text-decoration: none;
+  padding: 5px;
+}
+.active {
+  color: green;
+}
 .repo-list__img {
   width: 100%;
   height: 100%;

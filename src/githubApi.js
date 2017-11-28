@@ -16,20 +16,39 @@ export const exchangeCodeForToken = code =>
     }
   ).then(res => res.json());
 
-export const getRepos = () =>
-  fetch('https://api.github.com/repositories', {
-    method: 'GET'
-  }).then(res => res.json());
+export const getRepos = ({ page, perPage, sortField, direction, accessToken }) =>
+  fetch(
+    `https://api.github.com/user/repos` +
+      `?sort=${sortField}&direction=${direction}` +
+      `&page=${page}&per_page=${perPage}&access_token=${accessToken}`,
+    {
+      method: 'GET'
+    }
+  ).then(res => res.json());
+
+export const getStarredRepos = ({ page, perPage, sortField, direction, accessToken }) =>
+  fetch(
+    `https://api.github.com/user/starred` +
+      `?sort=${sortField}&direction=${direction}` +
+      `&page=${page}&per_page=${perPage}&access_token=${accessToken}`,
+    {
+      method: 'GET'
+    }
+  ).then(res => res.json());
 
 export const getRepo = ({ owner, repo, accessToken }) =>
   fetch(`https://api.github.com/repos/${owner}/${repo}?access_token=${accessToken}`, {
     method: 'GET'
   }).then(res => res.json());
 
-export const getContributors = ({ owner, repo, accessToken }) =>
-  fetch(`https://api.github.com/repos/${owner}/${repo}/contributors?access_token=${accessToken}`, {
-    method: 'GET'
-  }).then(res => res.json());
+export const getContributors = ({ owner, repo, page, perPage, accessToken }) =>
+  fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contributors` +
+      `?page=${page}&per_page=${perPage}&access_token=${accessToken}`,
+    {
+      method: 'GET'
+    }
+  ).then(res => res.json());
 
 export const getRepoStarred = ({ owner, repo, accessToken }) =>
   fetch(`https://api.github.com/user/starred/${owner}/${repo}?access_token=${accessToken}`, {
@@ -50,9 +69,4 @@ export const starRepo = ({ owner, repo, accessToken }) =>
 export const unstarRepo = ({ owner, repo, accessToken }) =>
   fetch(`https://api.github.com/user/starred/${owner}/${repo}?access_token=${accessToken}`, {
     method: 'DELETE'
-  });
-
-export const getStarredRepos = () =>
-  fetch('https://api.github.com/user/starred', {
-    method: 'GET'
   });

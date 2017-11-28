@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 
 class Contributor extends Component {
@@ -17,5 +18,14 @@ class Contributor extends Component {
     );
   }
 }
+
+Contributor.propTypes = {
+  contributor: PropTypes.shape({
+    avatar_url: PropTypes.string.isRequired,
+    login: PropTypes.string.isRequired,
+    html_url: PropTypes.string.isRequired,
+    repos_url: PropTypes.string.isRequired
+  })
+};
 
 export default Contributor;

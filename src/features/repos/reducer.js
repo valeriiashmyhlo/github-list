@@ -1,4 +1,4 @@
-import { REPOS_FETCH_SUCCESS, REPO_FETCH_SUCCESS } from './actions';
+import { REPOS_FETCH_SUCCESS, REPO_FETCH_SUCCESS, REPOS_STARRED_FETCH_SUCCESS } from './actions';
 
 const initialState = {
   data: {},
@@ -27,24 +27,19 @@ export default (state = initialState, action) => {
         [action.payload.full_name]: action.payload
       };
     }
-    // case FETCH_REPO_STARRED_SUCCESS: {
-    //   return {
-    //     ...state,
-    //     [action.payload]: {
-    //       ...state[action.payload],
-    //       starred: true
-    //     }
-    //   }
-    // }
-    // case FETCH_REPO_UNSTARRED_SUCCESS: {
-    //   return {
-    //     ...state,
-    //     [action.payload]: {
-    //       ...state[action.payload],
-    //       starred: false
-    //     }
-    //   }
-    // }
+    case REPOS_STARRED_FETCH_SUCCESS: {
+      const repos = {};
+      action.payload.forEach(repo => (repos[repo.full_name] = repo));
+
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          ...repos
+        },
+        starred: action.payload.map(repo => repo.full_name)
+      };
+    }
     default:
       return state;
   }
