@@ -1,20 +1,34 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 import { Container } from 'reactstrap';
+import { logout } from './features/auth/actions';
+import { connect } from 'react-redux';
+import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Container>
-          <header>
-            <h1>Header</h1>
-          </header>
-          {this.props.children}
-        </Container>
-      </div>
-    );
-  }
-}
+const App = ({ logout, children }) => (
+  <div className="App">
+    <Container>
+      <header>
+        <Link to="/" onClick={logout}>
+          Log out
+        </Link>
+        <h1>Header</h1>
+        <Link to={'/repos/starred'} activeClassName="active">
+          Starred repos
+        </Link>
+        <br />
+        <Link to={'/repos'} activeClassName="active">
+          All repos
+        </Link>
+      </header>
+      {children}
+    </Container>
+  </div>
+);
 
-export default App;
+App.propTypes = {
+  logout: PropTypes.func.isRequired
+};
+
+export default connect(null, { logout })(App);

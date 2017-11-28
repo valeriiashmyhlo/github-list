@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { Media } from 'reactstrap';
 
@@ -25,3 +26,18 @@ export const RepoList = ({ repos }) => (
     ))}
   </div>
 );
+
+RepoList.propTypes = {
+  repos: PropTypes.arrayOf(
+    PropTypes.shape({
+      full_name: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      html_url: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      owner: PropTypes.shape({
+        avatar_url: PropTypes.string.isRequired,
+        login: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired
+  )
+};
